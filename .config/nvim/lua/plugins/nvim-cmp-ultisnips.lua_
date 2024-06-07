@@ -1,0 +1,58 @@
+return {
+    { -- Autocompletion
+        'hrsh7th/nvim-cmp',
+        dependencies = {
+            'hrsh7th/cmp-nvim-lsp',
+
+            'rafamadriz/friendly-snippets',
+
+            'SirVer/ultisnips',
+            'quangnguyen30192/cmp-nvim-ultisnips',
+            config = function()
+              require("cmp_nvim_ultisnips").setup{}
+            end,
+        },
+
+        -- 
+        -- [[ nvim-cmp configuration for UltiSnips ]] --
+        -- 
+        config = function()
+          local cmp = require 'cmp'
+          local cmp_ultisnips_mappings = require('cmp_nvim_ultisnips.mappings')
+          require('cmp').setup({
+            snippet = {
+              expand = function(args)
+                vim.fn['UltiSnips#Anon'](args.body)
+              end,
+            },
+            sources = {
+              { name = 'ultisnips' },
+              -- more sources
+            },
+            -- recommended configuration for <Tab> people:
+            mapping = {
+              -- ['<Tab>'] = cmp.mapping(
+              --   function()
+              --     -- cmp_ultisnips_mappings.expand_or_jump_forwards()
+              --     cmp_ultisnips_mappings.expand()
+              --   end,
+              --   { 'i', 's', --[[ "c" (to enable the mapping in command mode) ]] }
+              -- ),
+              ['<C-o>'] = cmp.mapping(
+                function()
+                  cmp_ultisnips_mappings.jump_backwards()
+                end,
+                { 'i', 's', --[[ "c" (to enable the mapping in command mode) ]] }
+              ),
+              ['<C-i>'] = cmp.mapping(
+                function()
+                  cmp_ultisnips_mappings.jump_forwards()
+                end,
+                { 'i', 's', --[[ "c" (to enable the mapping in command mode) ]] }
+              ),
+            },
+          })
+        end,
+    },
+}
+

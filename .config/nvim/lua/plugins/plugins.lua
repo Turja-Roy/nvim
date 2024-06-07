@@ -1,0 +1,94 @@
+return {
+
+    -- Git related plugins
+    'tpope/vim-fugitive', -- Git commands from vim command line
+    'tpope/vim-rhubarb', -- Companion of vim-fugitive
+    -- Detect tabstop and shiftwidth automatically
+    -- 'tpope/vim-sleuth',
+
+    -- { -- Ultisnips
+    --     'SirVer/ultisnips',
+    --     ft = 'tex',
+    -- },
+
+    { -- Useful plugin to show you pending keybinds.
+        'folke/which-key.nvim', opts = {}
+    },
+
+    { -- Set lualine as statusline
+        'nvim-lualine/lualine.nvim',
+        opts = {
+            options = {
+                icons_enabled = true,
+                theme = 'onedark',
+                component_separators = '|',
+                section_separators = '',
+            },
+        },
+    },
+
+    { -- Add indentation guides even on blank lines
+        'lukas-reineke/indent-blankline.nvim',
+        main = 'ibl',
+        opts = {
+            -- char = '┊',
+            -- show_trailing_blankline_indent = false,
+        },
+    },
+
+    { -- "gc" to comment visual regions/lines
+        'numToStr/Comment.nvim', opts = {}
+    },
+
+    { -- Working with latex files
+        'lervag/vimtex',
+        ft = 'tex',
+    },
+
+    { -- Autopairs
+        'jiangmiao/auto-pairs'
+        -- 'windwp/nvim-autopairs',
+        -- event = "InsertEnter",
+        -- opts = {} -- this is equalent to setup({}) function
+    },
+
+    { -- Snippets
+        'honza/vim-snippets',
+    },
+
+    { -- Surround
+        'tpope/vim-surround',
+    },
+
+    { -- Github Copilot
+        'github/copilot.vim',
+    },
+
+    { -- vim visual multi
+        'mg979/vim-visual-multi',
+    },
+
+    -- { -- Adds git releated signs to the gutter, as well as utilities for managing changes
+    --   'lewis6991/gitsigns.nvim',
+    --   opts = {
+    --     -- See `:help gitsigns.txt`
+    --     signs = {
+    --       add = { text = '+' },
+    --       change = { text = '~' },
+    --       delete = { text = '_' },
+    --       topdelete = { text = '‾' },
+    --       changedelete = { text = '~' },
+    --     },
+    --     on_attach = function(bufnr)
+    --       vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk, { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
+    --       vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk, { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
+    --       vim.keymap.set('n', '<leader>ph', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
+    --     end,
+    --   },
+    -- },
+
+    -- require 'kickstart.plugins.autoformat',
+    -- require 'kickstart.plugins.debug',
+
+    -- { import = 'custom.plugins' },
+}, {}
