@@ -1,10 +1,10 @@
 local K = vim.keymap.set
 
 -- Shortcutting split navigation
-K('n', '<C-H>', '<C-w>h')
-K('n', '<C-J>', '<C-w>j')
-K('n', '<C-K>', '<C-w>k')
-K('n', '<C-L>', '<C-w>l')
+K('n', '<C-h>', ':wincmd j<CR>', { silent = true })
+K('n', '<C-j>', ':wincmd j<CR>', { silent = true })
+K('n', '<C-k>', ':wincmd j<CR>', { silent = true })
+K('n', '<C-l>', ':wincmd j<CR>', { silent = true })
 
 -- Copy-pasting between nvim and other programs
 K({'n', 'v'}, ',y', '"+y', { noremap = true })
