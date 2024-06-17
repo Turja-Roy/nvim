@@ -16,6 +16,13 @@ return {
                         ['<C-d>'] = false,
                     },
                 },
+                -- telescope ignore filetypes in Find Files
+                file_ignore_patterns = {
+                    "bin/.*",
+                    "res/.*",
+                    -- "*.class",
+                    -- "*.png",
+                },
             },
         },
     },
