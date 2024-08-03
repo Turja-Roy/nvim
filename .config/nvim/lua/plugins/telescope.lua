@@ -3,7 +3,6 @@ return {
     -- Fuzzy Finder (files, lsp, etc)
     {
         'nvim-telescope/telescope.nvim',
-        branch = '0.1.x',
         dependencies = {
             'nvim-lua/plenary.nvim',
         },
@@ -58,6 +57,17 @@ return {
             K('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
             K('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
+        end
+    },
+
+    -- Git worktree integration
+    {
+        'nvim-lua/popup.nvim',
+
+        config = function ()
+            local K = vim.keymap.set
+
+            K('n', '<leader>gw', require('telescope').extensions.git_worktree.git_worktrees, { desc = '[G]it [W]orktrees' })
         end
     },
 

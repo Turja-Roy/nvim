@@ -69,3 +69,4 @@ K('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' 
 
 
 -- Telescope keymaps
+-- K('n', '<leader>gw', "<CMD>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>", { desc = '[G]it [W]orktrees' })
