@@ -10,18 +10,6 @@ return {
         'folke/which-key.nvim', opts = {}
     },
 
-    { -- Set lualine as statusline
-        'nvim-lualine/lualine.nvim',
-        opts = {
-            options = {
-                icons_enabled = true,
-                theme = 'onedark',
-                component_separators = '|',
-                section_separators = '',
-            },
-        },
-    },
-
     { -- Add indentation guides even on blank lines
         'lukas-reineke/indent-blankline.nvim',
         main = 'ibl',
@@ -63,6 +51,10 @@ return {
         'mg979/vim-visual-multi',
     },
 
+    { -- nvim-notify
+        'rcarriga/nvim-notify',
+    },
+
     -- { -- Adds git releated signs to the gutter, as well as utilities for managing changes
     --   'lewis6991/gitsigns.nvim',
     --   opts = {
@@ -86,4 +78,10 @@ return {
     -- require 'kickstart.plugins.debug',
 
     -- { import = 'custom.plugins' },
-}, {}
+
+    { -- toggle-terminal
+        'akinsho/toggleterm.nvim',
+        version = "*",
+        config = true,
+    },
+}
