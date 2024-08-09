@@ -39,10 +39,10 @@ o.timeoutlen = 300
 g.indentLine_setConceal = 0
 
 -- VimTex configuration
-g.tex_flavor = 'latex'
-g.vimtex_view_method='zathura'
-g.vimtex_quickfix_mode=0
-o.conceallevel=1
+g.tex_flavor = "latex"
+g.vimtex_view_method = "zathura"
+g.vimtex_quickfix_mode = 0
+o.conceallevel = 1
 
 -- nvim-tree configuration
 g.loaded_netrw = 1
@@ -55,20 +55,19 @@ g.loaded_netrwPlugin = 1
 -- g.NERDTreeQuitOnOpen = 1
 
 -- Snippets configuration
-g.UltiSnipsExpandTrigger="<Tab>"
+g.UltiSnipsExpandTrigger = "<Tab>"
 -- g.UltiSnipsSnippetDirectories='/home/turja/.config/nvim/autoload/plugged/vim-snippets/UltiSnips'
-g.UltiSnipsJumpForwardTrigger="<Tab>"
-g.UltiSnipsJumpBackwardTrigger="<S-Tab>"
-
+g.UltiSnipsJumpForwardTrigger = "<Tab>"
+g.UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 
 -- [[ Highlight on yank ]]
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
+local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+vim.api.nvim_create_autocmd("TextYankPost", {
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+	group = highlight_group,
+	pattern = "*",
 })
 
 -- Github copilot tab settings
