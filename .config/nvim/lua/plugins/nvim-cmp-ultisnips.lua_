@@ -8,6 +8,9 @@ return {
 
             'SirVer/ultisnips',
             'quangnguyen30192/cmp-nvim-ultisnips',
+            init = function()
+                vim.cmd[[let g:UltiSnipsSnippetDirectories= [$HOME.'/.config/nvim/lua/UltiSnips', "UltiSnips"] ]]
+            end,
             config = function()
               require("cmp_nvim_ultisnips").setup{}
             end,

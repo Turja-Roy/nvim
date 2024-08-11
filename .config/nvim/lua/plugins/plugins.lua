@@ -24,15 +24,19 @@ return {
     },
 
     { -- Working with latex files
-        'lervag/vimtex',
+        "lervag/vimtex",
+        init = function()
+            vim.g.tex_flavor = "latex"
+            vim.g.vimtex_view_method = "zathura"
+            vim.g.vimtex_quickfix_mode = 0
+            vim.o.conceallevel = 1
+            vim.cmd.syntax('enable')
+        end,
         ft = 'tex',
     },
 
     { -- Autopairs
         'jiangmiao/auto-pairs'
-        -- 'windwp/nvim-autopairs',
-        -- event = "InsertEnter",
-        -- opts = {} -- this is equalent to setup({}) function
     },
 
     { -- Snippets

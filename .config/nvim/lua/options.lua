@@ -38,12 +38,6 @@ o.timeoutlen = 300
 -- Turn off Indentline conceallevel overwrite
 g.indentLine_setConceal = 0
 
--- VimTex configuration
-g.tex_flavor = "latex"
-g.vimtex_view_method = "zathura"
-g.vimtex_quickfix_mode = 0
-o.conceallevel = 1
-
 -- nvim-tree configuration
 g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1

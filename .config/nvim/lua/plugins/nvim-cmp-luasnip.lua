@@ -19,10 +19,13 @@ return {
 			local luasnip = require("luasnip")
 
 			require("luasnip.loaders.from_vscode").lazy_load()
-			require("luasnip.loaders.from_lua").load({
-				paths = { "~/.config/nvim/lua/LuaSnip/" },
-			})
-			luasnip.config.setup({})
+			require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/LuaSnip/" })
+
+            luasnip.config.setup({})
+            luasnip.config.set_config({
+                enable_autosnippets = true,
+                store_selection_keys = "<Tab>",
+            })
 
 			cmp.setup({
 				snippet = {
