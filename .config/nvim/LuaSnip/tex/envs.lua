@@ -1,12 +1,33 @@
 local ls = require("luasnip")
 local s = ls.snippet
 local i = ls.insert_node
+local f = ls.function_node
 local fmta = require("luasnip.extras.fmt").fmta
 local rep = require("luasnip.extras").rep
 
 local line_begin = require("luasnip.extras.expand_conditions").line_begin
 
 return {
+    -- Comment box
+    s(
+        { trig = "box", dscr = "Comment box" },
+        fmta(
+            [[
+              <border>
+              %  <text>  %
+              <border>
+              <end_line>
+            ]],
+            {
+                text = i(1, "Heading"),
+                border = f(function(args)
+                    local len = string.len(args[1][1]) + 6  -- Adjust length for '%  %'
+                    return string.rep("%", len)
+                end, { 1 }),
+                end_line = i(0)
+            })
+    ),
+
 	-- New Environment
 	s(
 		{ trig = "beg", dscr = "Environment" },
