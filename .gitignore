@@ -1,1 +1,4 @@
 lazyvim.json
+.Vim_Configs_Old/autoload/plugged/coc.nvim
+.Vim_Configs_Old/autoload/plugged/tokyonight-vim
+.Vim_Configs_Old/autoload/plugged/vim-snippets
