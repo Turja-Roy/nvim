@@ -10,12 +10,6 @@ K('n', '<C-l>', ':wincmd j<CR>', { silent = true })
 K({'n', 'v'}, ',y', '"+y', { noremap = true })
 K({'n', 'v'}, ',p', '"+p', { noremap = true })
 
--- nvim-tree configuration
--- K('n', ',n', function()
---     return require("nvim-tree.api").tree.toggle()
--- end
--- , { silent = true })
-
 -- Moving lines or blocks of lines
 K('n', '<A-j>', ':m .+1<CR>==', { silent = true })
 K('n', '<A-k>', ':m .-2<CR>==', { silent = true })
@@ -48,8 +42,8 @@ K('t', '<F10>', '<C-\\><C-n>:w<CR>:split | terminal /home/turja/.local/bin/compi
 -- [[ Java Project build and run ]] --
 K('n', '<F9>', ':w<CR>:ToggleTerm<CR>compile_project<CR>')
 
--- [[Git keymaps]] --
--- K('n', '<leader>gs', ':split | terminal git pull && git add -A && zsh git commit -m \"Update \\$(date \'+\\%Y-\\%m-\\%d \\%H:\\%M\')\" && git push')
+-- [[Git update keymap]] --
+K('n', '<leader>gs', ':ToggleTerm direction=float<CR>gupdateall<CR>', { desc = 'Git update all with timestamp commit' })
 
 -- No op for space (leader) key
 -- K({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
@@ -66,7 +60,3 @@ K('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic messa
 K('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 K('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 K('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
-
-
--- Telescope keymaps
--- K('n', '<leader>gw', "<CMD>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>", { desc = '[G]it [W]orktrees' })
