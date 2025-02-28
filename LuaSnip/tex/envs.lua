@@ -100,4 +100,16 @@ return {
 		)
 	),
 
+    -- Minipage
+    s(
+        { trig = "minip", dscr = "Minipage" },
+        fmta(
+            [[
+              \begin{minipage}{<>}
+                  <>
+              \end{minipage}
+            ]],
+            { i(1, "0.5\\textwidth"), i(2) }
+        )
+    ),
 }

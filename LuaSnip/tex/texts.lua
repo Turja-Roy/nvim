@@ -17,9 +17,10 @@ end
 
 return {
     s({ trig = "it", dscr = "visual italic" }, fmta("\\textit{<>}", { d(1, get_visual) })),
-    s({ trig = "tt", dscr = "visual typescript" }, fmta("\\textit{<>}", { d(1, get_visual) })),
-    s({ trig = "bf", dscr = "visual bold" }, fmta("\\textit{<>}", { d(1, get_visual) })),
-    s({ trig = "un", dscr = "visual underline" }, fmta("\\textit{<>}", { d(1, get_visual) })),
+    s({ trig = "tt", dscr = "visual typescript" }, fmta("\\texttt{<>}", { d(1, get_visual) })),
+    s({ trig = "bf", dscr = "visual bold" }, fmta("\\textbf{<>}", { d(1, get_visual) })),
+    s({ trig = "sc", dscr = "visual small caps" }, fmta("\\textsc{<>}", { d(1, get_visual) })),
+    s({ trig = "un", dscr = "visual underline" }, fmta("\\underline{<>}", { d(1, get_visual) })),
 
     s({ trig = "hr", dscr = "hyperref" }, fmta([[\href{<>}{<>}]], { i(1, "url"), i(2, "display name") })),
 
@@ -29,4 +30,15 @@ return {
     s({ trig = "sub", dscr = "section" }, fmta([[\subsection{<>}]], { i(1) }), { condition = line_begin }),
     s({ trig = "subsub", dscr = "section" }, fmta([[\subsubsection{<>}]], { i(1) }), { condition = line_begin }),
     s({ trig = "subsubsub", dscr = "section" }, fmta([[\subsubsubsection{<>}]], { i(1) }), { condition = line_begin }),
+
+    -- Writing
+    s({ trig = "\\\\n", dscr = "double newline", snippetType = "autosnippet" },
+        fmta(
+            [[
+              \\~\\
+              <>
+            ]],
+            { i(1) }
+        )
+    ),
 }

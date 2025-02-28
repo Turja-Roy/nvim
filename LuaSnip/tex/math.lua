@@ -22,6 +22,11 @@ end
 return {
     -- Superscripts
     s(
+        { trig = "([%d%)%}%]])^^", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+        fmta("<>^{<>}", { f(function(_, snip) return snip.captures[1] end), d(1, get_visual) }),
+        { condition = mathzone }
+    ),
+    s(
         { trig = "([%a%)%}%]])^^", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
         fmta("<>^{<>}", { f(function(_, snip) return snip.captures[1] end), d(1, get_visual) }),
         { condition = mathzone }
@@ -40,7 +45,7 @@ return {
     ),
     s(
         { trig = "([%a%)%}%]])([%d])", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
-        fmta("<>_{<>}",
+        fmta("<>_<>",
             { f(function(_, snip) return snip.captures[1] end),
                 f(function(_, snip) return snip.captures[2] end) }),
         { condition = mathzone }
@@ -140,6 +145,11 @@ return {
         { condition = mathzone }
     ),
     s(
+        { trig = "app", dscr = "approx", snippetType = "autosnippet" },
+        { t("\\approx") },
+        { condition = mathzone }
+    ),
+    s(
         { trig = "<=", dscr = "less than or equal to", snippetType = "autosnippet" },
         { t("\\leq") },
         { condition = mathzone }
@@ -159,6 +169,11 @@ return {
         { t("\\impliedby") },
         { condition = mathzone }
     ),
+    s(
+        { trig = "pm", dscr = "plus minus", snippetType = "autosnippet" },
+        { t("\\pm") },
+        { condition = mathzone }
+    ),
 
     -- Overline
     s(
@@ -170,6 +185,12 @@ return {
     s(
         { trig = "hat", dscr = "hat", snippetType = "autosnippet" },
         fmta("\\hat{<>}", { d(1, get_visual) }),
+        { condition = mathzone }
+    ),
+    -- Bar
+    s(
+        { trig = "bar", dscr = "bar", snippetType = "autosnippet" },
+        fmta("\\bar{<>}", { d(1, get_visual) }),
         { condition = mathzone }
     ),
     -- Vector
@@ -211,8 +232,23 @@ return {
         { condition = mathzone }
     ),
     s(
+        { trig = "([%d%)%}%]])deg", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+        fmta("<>^{\\circ}<>", { f(function(_, snip) return snip.captures[1] end), d(1, get_visual) }),
+        { condition = mathzone }
+    ),
+    s(
         { trig = "([%d%a%)%}%]])pp", dscr = "prime", wordTrig = false, regTrig = true, snippetType = "autosnippet" },
         fmta("<>'", { f(function(_, snip) return snip.captures[1] end) }),
+        { condition = mathzone }
+    ),
+    s(
+        { trig = "tf", dscr = "therefore", snippetType = "autosnippet" },
+        { t("\\therefore") },
+        { condition = mathzone }
+    ),
+    s(
+        { trig = "txt", dscr = "therefore", snippetType = "autosnippet" },
+        fmta("\\text{<>}", { i(1) }),
         { condition = mathzone }
     ),
 }

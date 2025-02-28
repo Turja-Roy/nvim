@@ -34,13 +34,13 @@ return {
     ),
     s(
         { trig = "([^%a])sdm", wordTrig = false, regTrig = true, snippetType = "autosnippet" },
-        fmta("<>\\[<>\\]", { f(function(_, snip)
+        fmta("<>\\[ <> \\]", { f(function(_, snip)
             return snip.captures[1]
         end), d(1, get_visual) })
     ),
     s(
         { trig = "sdm", wordTrig = true, regTrig = false, snippetType = "autosnippet" },
-        fmta("<>\\[<>\\]", { f(function(_, snip)
+        fmta("<>\\[ <> \\]", { f(function(_, snip)
             return snip.captures[1]
         end), d(1, get_visual) }),
         { condition = line_begin }
