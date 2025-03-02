@@ -1,6 +1,6 @@
 let mapleader=" "
 
-call plug#begin('~/.config/nvim/autoload/plugged')
+call plug#begin('~/.config/vim/autoload/plugged')
 
 " Themes
 Plug 'ghifarit53/tokyonight-vim'
@@ -26,15 +26,14 @@ Plug 'tpope/vim-surround'
 Plug 'jiangmiao/auto-pairs'
 " Plug 'tpope/vim-eunuch'
 Plug 'vim-airline/vim-airline'
-Plug 'elkowar/yuck.vim', {'for': 'yuck'}
 Plug 'lervag/vimtex'
 
 call plug#end()
 
 " Themes
 set termguicolors
-let g:tokyonight_style = 'storm'
-colorscheme nightfox
+let g:tokyonight_style = 'night'
+colorscheme tokyonight
 
 " Turn off Indentline conceallevel overwrite
 let g:indentLine_setConceal = 0
@@ -112,7 +111,7 @@ endif
 	set splitbelow splitright
 
 " NERDtree settings
-	map <C-N> :NERDTreeToggle<CR>
+	map <Leader>n :NERDTreeToggle<CR>
 	let NERDTreeShowHidden=1
 	let NERDTreeQuitOnOpen=1
 
@@ -127,6 +126,6 @@ endif
     
 " Spellcheck
     setlocal spell
-    set spelllang=nl,en_us
+    set spelllang=en_us
     inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
     set nospell
