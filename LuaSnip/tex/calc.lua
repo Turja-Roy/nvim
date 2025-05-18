@@ -49,61 +49,75 @@ return {
 		fmta("\\si{<> <>}", { i(1, "val"), i(2, "unit") })
 	),
 
-    -- Integrals
+    -- Integration
     s(
         { trig = "int", dscr = "indefinite integral", snippetType = "autosnippet" },
-        fmta("\\int <> \\: d{<>}",
-            { d(1, get_visual), i(2) }),
+        fmta("\\int <> \\dd{<>}",
+            { d(1, get_visual), i(2, "x") }),
         { condition = mathzone }
     ),
     s(
         { trig = "dint", dscr = "definite integral", snippetType = "autosnippet" },
-        fmta("\\int_{<>}^{<>} <> \\: d{<>}",
-            { i(1), i(2), d(3, get_visual), i(4) }),
+        fmta("\\int_{<>}^{<>} <> \\dd{<>}",
+            { i(1, "a"), i(2, "b"), d(3, get_visual), i(4, "x") }),
         { condition = mathzone }
     ),
     s(
         { trig = "iint", dscr = "indefinite integral", snippetType = "autosnippet" },
-        fmta("\\iint <> \\: d{<>}",
-            { d(1, get_visual), i(2) }),
+        fmta("\\iint <> \\dd{<>}",
+            { d(1, get_visual), i(2, "x") }),
         { condition = mathzone }
     ),
     s(
         { trig = "diint", dscr = "definite integral", snippetType = "autosnippet" },
-        fmta("\\iint_{<>}^{<>} <> \\: d{<>}",
-            { i(1), i(2), d(3, get_visual), i(4) }),
+        fmta("\\iint_{<>}^{<>} <> \\dd{<>}",
+            { i(1, "a"), i(2, "b"), d(3, get_visual), i(4, "x") }),
         { condition = mathzone }
     ),
     s(
         { trig = "iiint", dscr = "indefinite integral", snippetType = "autosnippet" },
-        fmta("\\int <> \\: d{<>}",
-            { d(1, get_visual), i(2) }),
+        fmta("\\int <> \\dd{<>}",
+            { d(1, get_visual), i(2, "x") }),
         { condition = mathzone }
     ),
     s(
         { trig = "diiint", dscr = "definite integral", snippetType = "autosnippet" },
-        fmta("\\int_{<>}^{<>} <> \\: d{<>}",
-            { i(1), i(2), d(3, get_visual), i(4) }),
+        fmta("\\int_{<>}^{<>} <> \\dd{<>}",
+            { i(1, "a"), i(2, "b"), d(3, get_visual), i(4, "x") }),
         { condition = mathzone }
     ),
     s(
         { trig = "oint", dscr = "indefinite integral", snippetType = "autosnippet" },
-        fmta("\\oint <> \\: d{<>}",
-            { d(1, get_visual), i(2) }),
+        fmta("\\oint <> \\dd{<>}",
+            { d(1, get_visual), i(2, "x") }),
         { condition = mathzone }
     ),
     s(
         { trig = "doint", dscr = "definite integral", snippetType = "autosnippet" },
-        fmta("\\oint_{<>}^{<>} <> \\: d{<>}",
-            { i(1), i(2), d(3, get_visual), i(4) }),
+        fmta("\\oint_{<>}^{<>} <> \\dd{<>}",
+            { i(1, "a"), i(2, "b"), d(3, get_visual), i(4, "x") }),
         { condition = mathzone }
     ),
 
     -- Summation
     s(
         { trig = "sum", dscr = "Summation", snippetType = "autosnippet" },
+        fmta("\\sum <>",
+            { d(1, get_visual) }),
+        { condition = mathzone }
+    ),
+    s(
+        { trig = "nsum", dscr = "Summation", snippetType = "autosnippet" },
         fmta("\\sum_{<>}^{<>} <>",
             { i(1, "n=0"), i(2, "\\infty"), d(3, get_visual) }),
+        { condition = mathzone }
+    ),
+
+    -- Binomial Coefficient
+    s(
+        { trig = "nCk", dscr = "Binomial Coefficient", snippetType = "autosnippet" },
+        fmta("\\binom{<>}{<>}",
+            { i(1, "n"), i(2, "k") }),
         { condition = mathzone }
     ),
 

@@ -51,7 +51,7 @@ return {
             [[
               <>\[ 
                   <>
-              \]
+               \]
             ]],
             { f( function(_, snip) return snip.captures[1] end ), i(1) }
         )
@@ -62,7 +62,7 @@ return {
             [[
               <>\[ 
                   <>
-              \]
+               \]
             ]],
             { f( function(_, snip) return snip.captures[1] end ), i(1) }),
         { condition = line_begin }
@@ -149,9 +149,9 @@ return {
         { trig = "def", dscr = "Definition" },
         fmta(
             [[
-              \begin{definition}{<>}{}
+              \Definition{<>}{
                   <>
-              \end{definition}
+              }
             ]],
             { i(1), i(2) }
         )
@@ -160,9 +160,9 @@ return {
         { trig = "thrm", dscr = "Theorem" },
         fmta(
             [[
-              \begin{theorem}{<>}{}
+              \Theorem{<>}{
                   <>
-              \end{theorem}
+              }
             ]],
             { i(1), i(2) }
         )
@@ -171,9 +171,9 @@ return {
         { trig = "xmp", dscr = "Example" },
         fmta(
             [[
-              \begin{example}{<>}{}
+              \Example{<>}{
                   <>
-              \end{example}
+              }
             ]],
             { i(1), i(2) }
         )
@@ -182,9 +182,20 @@ return {
         { trig = "exc", dscr = "Excercise" },
         fmta(
             [[
-              \begin{excercise}{<>}{}
+              \Excercise{<>}{
                   <>
-              \end{excercise}
+              }
+            ]],
+            { i(1), i(2) }
+        )
+    ),
+    s( -- Note
+        { trig = "ntte", dscr = "Note" },
+        fmta(
+            [[
+              \Note[<>]{
+                  <>
+              }
             ]],
             { i(1), i(2) }
         )
@@ -193,16 +204,16 @@ return {
         { trig = "nte", dscr = "Note" },
         fmta(
             [[
-              \begin{note}{<>}{}
+              \Note{
                   <>
-              \end{note}
+              }
             ]],
-            { i(1), i(2) }
+            { i(1) }
         )
     ),
     s( -- Proof
         { trig = "prf", dscr = "Proof", snippetType = "autosnippet" },
-        { t("\\underline{\\textbf{Proof:}}") },
+        { t("\\underline{\\textbf{Proof:}} \\\\ ") },
         { condition = line_begin }
     )
 }

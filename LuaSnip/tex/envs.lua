@@ -47,13 +47,27 @@ return {
         { trig = "fig", dscr = "Figure" },
         fmta(
             [[
-              \begin{figure}{<>}
+              \begin{figure}[<>]
                   \centering
-                  \includegraphics[<>]{<>}
+                  \includegraphics[width=<>\textwidth]{<>}
                   \caption{<>}
               \end{figure}
             ]],
-            { i(1, "htpb"), i(2, "width=0.8\\textwidth"), i(3), rep(3) }
+            { i(1, "htpb"), i(2, "0.8"), i(3), rep(3) }
+        )
+    ),
+
+    -- Subfigure
+    s(
+        { trig = "subfig", dscr = "Subfigure" },
+        fmta(
+            [[
+              \begin{subfigure}{<>\textwidth}
+                  \includegraphics[width=<>\textwidth]{<>}
+                  \caption{<>}
+              \end{subfigure}
+            ]],
+            { i(1, "0.4"), i(2, "0.8"), i(3), rep(3) }
         )
     ),
 
