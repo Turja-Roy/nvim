@@ -4,6 +4,7 @@ return {
         'nvim-treesitter/nvim-treesitter',
         dependencies = {
             'nvim-treesitter/nvim-treesitter-textobjects',
+            'andymass/vim-matchup',
         },
         build = ':TSUpdate',
 
@@ -11,7 +12,7 @@ return {
             require('nvim-treesitter.configs').setup {
 
                 auto_install = true,
-                ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'java', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'markdown' },
+                ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'java', 'rust', 'javascript', 'tsx', 'typescript', 'vimdoc', 'vim', 'markdown' },
 
                 highlight = {
                     enable = true,
@@ -72,6 +73,9 @@ return {
                     --   },
                     -- },
                 },
+                matchup = {
+                    enable = true,
+                }
             }
         end
     },

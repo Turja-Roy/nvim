@@ -23,16 +23,14 @@ return {
         'numToStr/Comment.nvim', opts = {}
     },
 
-    { -- Working with latex files
-        "lervag/vimtex",
-        init = function()
-            vim.g.tex_flavor = "latex"
-            vim.g.vimtex_view_method = "zathura"
-            vim.g.vimtex_quickfix_mode = 0
-            vim.o.conceallevel = 1
-            vim.cmd.syntax('enable')
-        end,
-        ft = 'tex',
+    { -- vim-matchup
+        "andymass/vim-matchup",
+        config = function ()
+            vim.g.matchup_matchparen_offscreen = { method = 'popup' }
+            vim.g.matchup_matchparen_deferred = 1
+            vim.g.matchup_matchparen_timeout = 100
+            vim.g.matchup_matchparen_nomode = 'i'
+        end
     },
 
     { -- Autopairs
@@ -55,37 +53,35 @@ return {
         'mg979/vim-visual-multi',
     },
 
-    { -- nvim-notify
-        'rcarriga/nvim-notify',
+    { -- Adds git releated signs to the gutter, as well as utilities for managing changes
+      'lewis6991/gitsigns.nvim',
+      opts = {
+        -- See `:help gitsigns.txt`
+        signs = {
+          add = { text = '+' },
+          change = { text = '~' },
+          delete = { text = '_' },
+          topdelete = { text = '‾' },
+          changedelete = { text = '~' },
+        },
+        on_attach = function(bufnr)
+          vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk, { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
+          vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk, { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
+          vim.keymap.set('n', '<leader>ph', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
+        end,
+      },
     },
-
-    -- { -- Adds git releated signs to the gutter, as well as utilities for managing changes
-    --   'lewis6991/gitsigns.nvim',
-    --   opts = {
-    --     -- See `:help gitsigns.txt`
-    --     signs = {
-    --       add = { text = '+' },
-    --       change = { text = '~' },
-    --       delete = { text = '_' },
-    --       topdelete = { text = '‾' },
-    --       changedelete = { text = '~' },
-    --     },
-    --     on_attach = function(bufnr)
-    --       vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk, { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
-    --       vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk, { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
-    --       vim.keymap.set('n', '<leader>ph', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
-    --     end,
-    --   },
-    -- },
-
-    -- require 'kickstart.plugins.autoformat',
-    -- require 'kickstart.plugins.debug',
-
-    -- { import = 'custom.plugins' },
 
     { -- toggle-terminal
         'akinsho/toggleterm.nvim',
         version = "*",
         config = true,
+    },
+
+    {
+        "m4xshen/hardtime.nvim",
+        lazy = false,
+        dependencies = { "MunifTanjim/nui.nvim" },
+        opts = {},
     },
 }

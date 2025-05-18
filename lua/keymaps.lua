@@ -36,11 +36,11 @@ K('n', '<leader>tr', ':ToggleTerm direction=float<CR>ranger<CR>')
 K('n', '<leader>tv', ':ToggleTerm direction=vertical size=70<CR>')
 
 -- [[ C/C++/Java/Python compilation ]] --
-K('n', '<F10>', ':w<CR>:split | terminal /home/turja/.local/bin/compile_and_run %<CR>I')
-K('t', '<F10>', '<C-\\><C-n>:w<CR>:split | terminal /home/turja/.local/bin/compile_and_run %<CR>I')
+K('n', '<F10>', ':wa<CR>:split | terminal /home/turja/.local/bin/compile_and_run %<CR>I')
+K('t', '<F10>', '<C-\\><C-n>:wa<CR>:split | terminal /home/turja/.local/bin/compile_and_run %<CR>I')
 
 -- [[ Java Project build and run ]] --
-K('n', '<F9>', ':w<CR>:ToggleTerm<CR>compile_project<CR>')
+K('n', '<F9>', ':wa<CR>:ToggleTerm<CR>compile_project<CR>')
 
 -- [[Git update keymap]] --
 K('n', '<leader>gs', ':ToggleTerm direction=float<CR>gupdateall<CR>', { desc = 'Git update all with timestamp commit' })
