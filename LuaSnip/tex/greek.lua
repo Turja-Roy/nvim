@@ -1,6 +1,12 @@
 local ls = require("luasnip")
 local s = ls.snippet
 local t = ls.text_node
+local f = ls.function_node
+local fmta = require("luasnip.extras.fmt").fmta
+
+local mathzone = function()
+    return vim.fn['vimtex#syntax#in_mathzone']() == 1
+end
 
 local greek_latex = {
     a = "\\alpha", b = "\\beta", g = "\\gamma", d = "\\delta", e = "\\epsilon",
@@ -26,15 +32,25 @@ for key, value in pairs(greek_latex) do
     table.insert(
         greek_snippets,
         s(
-            { trig = ";"..key, snippetType="autosnippet" },
-            { t(value) }
+            { trig = ";"..key, dscr = "greek", snippetType="autosnippet" },
+            { t(value) },
+            { condition = mathzone }
         )
     )
     table.insert(
         greek_snippets,
         s(
-            { trig = "@"..key },
-            { t(value) }
+            { trig = "([%d%a]);"..key, dscr = "greek", regTrig = true, wordTrig = false, snippetType="autosnippet" },
+            fmta("<><>", { f(function(_, snip) return snip.captures[1] end), t(value) }),
+            { condition = mathzone }
+        )
+    )
+    table.insert(
+        greek_snippets,
+        s(
+            { trig = "@"..key, dscr = "greek" },
+            { t(value) },
+            { condition = mathzone }
         )
     )
 end

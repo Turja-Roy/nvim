@@ -36,7 +36,11 @@ return {
 	-- Partial Derivative
 	s(
 		{ trig = "pdv", dscr = "Partial Derivative", snippetType = "autosnippet" },
-		fmta("\\pdv{<>}{<>}", { i(2, "nom"), i(3, "denom") })
+		fmta("\\pdv{<>}{<>}", { i(1, "nom"), i(2, "denom") })
+	),
+	s(
+		{ trig = "pdx", dscr = "Partial Derivative", snippetType = "autosnippet" },
+		fmta("\\pdv{}{<>} <>", { i(1, "denom"), i(2, "nom") })
 	),
 	s(
 		{ trig = "pdn", dscr = "Partial Derivative", snippetType = "autosnippet" },
