@@ -41,6 +41,11 @@ return {
         fmta("<>e^{<>}", { f(function(_, snip) return snip.captures[1] end), d(1, get_visual) }),
         { condition = mathzone }
     ),
+    s(
+        { trig = "deg", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+        fmta("<>^{\\circ}<>", { f(function(_, snip) return snip.captures[1] end), d(1, get_visual) }),
+        { condition = mathzone }
+    ),
 
     -- Subscripts
     s(
@@ -63,7 +68,7 @@ return {
         { condition = mathzone }
     ),
     s(
-        { trig = "([^%s]+)/", dscr = "fraction", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+        { trig = "([^%s=<>%&]+)/", dscr = "fraction", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
         fmta("\\frac{<>}{<>}",
             { f(function(_, snip) return snip.captures[1] end), d(1, get_visual) }),
         { condition = mathzone }
@@ -100,6 +105,8 @@ return {
         fmta("\\lVert <> \\rVert", { d(1, get_visual) }),
         { condition = mathzone }
     ),
+
+    -- Big Delimiters
     s(
         { trig = "lrb", dscr = "big brackets" },
         fmta("\\bigl <> \\bigr", { d(1, get_visual) }),
@@ -116,12 +123,17 @@ return {
         { condition = mathzone }
     ),
     s(
-        { trig = "blra", dscr = "big angle brackets", snippetType = "autosnippet" },
+        { trig = "lrba", dscr = "big brackets", snippetType = "autosnippet" },
+        fmta("\\bigl\\langle <> \\bigr\\rangle", { d(1, get_visual) }),
+        { condition = mathzone }
+    ),
+    s(
+        { trig = "lrBa", dscr = "big brackets", snippetType = "autosnippet" },
         fmta("\\Bigl\\langle <> \\Bigr\\rangle", { d(1, get_visual) }),
         { condition = mathzone }
     ),
     s(
-        { trig = "bblra", dscr = "big angle brackets", snippetType = "autosnippet" },
+        { trig = "lrBBa", dscr = "big brackets", snippetType = "autosnippet" },
         fmta("\\Biggl\\langle <> \\Biggr\\rangle", { d(1, get_visual) }),
         { condition = mathzone }
     ),
@@ -183,10 +195,9 @@ return {
         { trig = "==", dscr = "equals", snippetType = "autosnippet" },
         fmta(
             [[
-                &= <> \\
-                <>
+                &= <>
             ]],
-            { d(1, get_visual), i(2) }),
+            { d(1, get_visual) }),
         { condition = mathzone }
     ),
     s(
@@ -383,6 +394,11 @@ return {
     s(
         { trig = "log", dscr = "logarithm", snippetType = "autosnippet" },
         fmta("\\log(<>)", { d(1, get_visual) }),
+        { condition = mathzone }
+    ),
+    s(
+        { trig = "blog", dscr = "logarithm", snippetType = "autosnippet" },
+        fmta("\\log_{<>}(<>)", { d(1, get_visual), d(2, get_visual) }),
         { condition = mathzone }
     ),
     s(

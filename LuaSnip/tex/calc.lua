@@ -102,6 +102,12 @@ return {
             { i(1, "a"), i(2, "b"), d(3, get_visual), i(4, "x") }),
         { condition = mathzone }
     ),
+    s(
+        { trig = "dd", dscr = "definite integral", snippetType = "autosnippet" },
+        fmta("\\dd{<>}",
+            { i(1, "x") }),
+        { condition = mathzone }
+    ),
 
     -- Summation
     s(

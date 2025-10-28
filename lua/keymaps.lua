@@ -1,5 +1,8 @@
 local K = vim.keymap.set
 
+-- Jump to after the closing bracket or quote 
+K('i', '<A-o>', '<C-o>a', { silent = true })
+
 -- Shortcutting split navigation
 K('n', '<C-h>', ':wincmd j<CR>', { silent = true })
 K('n', '<C-j>', ':wincmd j<CR>', { silent = true })
