@@ -34,7 +34,10 @@ return {
     },
 
     { -- Autopairs
-        'jiangmiao/auto-pairs'
+        -- 'jiangmiao/auto-pairs'
+        'windwp/nvim-autopairs',
+        event = "InsertEnter",
+        config = true
     },
 
     { -- Snippets
