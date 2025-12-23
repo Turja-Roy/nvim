@@ -51,9 +51,10 @@ return {
                   \centering
                   \includegraphics[width=<>\textwidth]{<>}
                   \caption{<>}
+                  \label{fig:<>}
               \end{figure}
             ]],
-            { i(1, "htpb"), i(2, "0.8"), i(3), rep(3) }
+            { i(1, "htpb"), i(2, "0.8"), i(3), i(4), rep(3) }
         )
     ),
 

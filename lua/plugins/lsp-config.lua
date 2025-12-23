@@ -56,12 +56,13 @@ return {
                 -- rust_analyzer = {},
                 -- tsserver = {},
 
-                lua_ls = {
-                    Lua = {
-                        workspace = { checkThirdParty = false },
-                        telemetry = { enable = false },
-                    },
-                },
+                -- lua_ls = {
+                --     Lua = {
+                --         workspace {
+                --             library = vim.api.nvim_get_runtime_file("", true),
+                --         },
+                --     },
+                -- },
             }
 
             -- Setup neovim lua configuration
