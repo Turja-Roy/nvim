@@ -106,9 +106,26 @@ return {
         { condition = mathzone }
     ),
 
+    -- Big Right Delimiters
+    s(
+        { trig = "rrb", dscr = "big brackets", snippetType = "autosnippet" },
+        fmta("\\bigr|_{<>}^{<>}", { d(1, get_visual), d(2, get_visual) }),
+        { condition = mathzone }
+    ),
+    s(
+        { trig = "rrB", dscr = "big brackets" },
+        fmta("\\Bigr|_{<>}^{<>}", { d(1, get_visual), d(2, get_visual) }),
+        { condition = mathzone }
+    ),
+    s(
+        { trig = "rrBB", dscr = "big brackets", snippetType = "autosnippet" },
+        fmta("\\Biggr|_{<>}^{<>}", { d(1, get_visual), d(2, get_visual) }),
+        { condition = mathzone }
+    ),
+
     -- Big Delimiters
     s(
-        { trig = "lrb", dscr = "big brackets" },
+        { trig = "lrb", dscr = "big brackets", snippetType = "autosnippet" },
         fmta("\\bigl <> \\bigr", { d(1, get_visual) }),
         { condition = mathzone }
     ),
@@ -118,7 +135,7 @@ return {
         { condition = mathzone }
     ),
     s(
-        { trig = "lrBB", dscr = "big brackets" },
+        { trig = "lrBB", dscr = "big brackets", snippetType = "autosnippet" },
         fmta("\\Biggl <> \\Biggr", { d(1, get_visual) }),
         { condition = mathzone }
     ),

@@ -74,7 +74,7 @@ return {
     ),
     s(
         { trig = "diint", dscr = "definite integral", snippetType = "autosnippet" },
-        fmta("\\iint_{<>}^{<>} <> \\dd{<>}",
+        fmta("\\iint\\limits_{<>}^{<>} <> \\dd{<>}",
             { i(1, "a"), i(2, "b"), d(3, get_visual), i(4, "x") }),
         { condition = mathzone }
     ),
@@ -86,7 +86,7 @@ return {
     ),
     s(
         { trig = "diiint", dscr = "definite integral", snippetType = "autosnippet" },
-        fmta("\\int_{<>}^{<>} <> \\dd{<>}",
+        fmta("\\iiint\\limits_{<>}^{<>} <> \\dd{<>}",
             { i(1, "a"), i(2, "b"), d(3, get_visual), i(4, "x") }),
         { condition = mathzone }
     ),
@@ -98,14 +98,20 @@ return {
     ),
     s(
         { trig = "doint", dscr = "definite integral", snippetType = "autosnippet" },
-        fmta("\\oint_{<>}^{<>} <> \\dd{<>}",
+        fmta("\\oint\\limits_{<>}^{<>} <> \\dd{<>}",
             { i(1, "a"), i(2, "b"), d(3, get_visual), i(4, "x") }),
         { condition = mathzone }
     ),
     s(
-        { trig = "dd", dscr = "definite integral", snippetType = "autosnippet" },
+        { trig = "ddd", dscr = "definite integral", snippetType = "autosnippet" },
         fmta("\\dd{<>}",
             { i(1, "x") }),
+        { condition = mathzone }
+    ),
+    s(
+        { trig = "ilim", dscr = "integral limit", snippetType = "autosnippet" },
+        fmta("\\limits_{<>}",
+            { i(1, "R") }),
         { condition = mathzone }
     ),
 
