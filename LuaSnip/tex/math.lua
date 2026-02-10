@@ -86,6 +86,11 @@ return {
         { condition = mathzone }
     ),
     s(
+        { trig = "lrC", dscr = "curly braces for set", snippetType = "autosnippet" },
+        fmta("\\{ <> \\}", { d(1, get_visual) }),
+        { condition = mathzone }
+    ),
+    s(
         { trig = "lrs", dscr = "square brackets", snippetType = "autosnippet" },
         fmta("\\left[ <> \\right]", { d(1, get_visual) }),
         { condition = mathzone }
@@ -157,8 +162,23 @@ return {
 
     -- Set and Relation notations
     s(
+        { trig = "st", dscr = "such that notation", snippetType = "autosnippet" },
+        { t("\\mid ") },
+        { condition = mathzone }
+    ),
+    s(
+        { trig = "sst", dscr = "such that text", snippetType = "autosnippet" },
+        { t("\\text{ s.t. } ") },
+        { condition = mathzone }
+    ),
+    s(
         { trig = "sub", dscr = "subset", snippetType = "autosnippet" },
-        { t("\\subset") },
+        { t("\\subset ") },
+        { condition = mathzone }
+    ),
+    s(
+        { trig = "seq", dscr = "subset equal", snippetType = "autosnippet" },
+        { t("\\subseteq ") },
         { condition = mathzone }
     ),
     s(
@@ -173,27 +193,27 @@ return {
     ),
     s(
         { trig = "inn", dscr = "in", snippetType = "autosnippet" },
-        { t("\\in") },
+        { t("\\in ") },
         { condition = mathzone }
     ),
     s(
         { trig = "cap", dscr = "cap", snippetType = "autosnippet" },
-        { t("\\cap") },
+        { t("\\cap ") },
         { condition = mathzone }
     ),
     s(
         { trig = "cup", dscr = "cup", snippetType = "autosnippet" },
-        { t("\\cup") },
+        { t("\\cup ") },
         { condition = mathzone }
     ),
     s(
         { trig = "bcap", dscr = "bigcap", snippetType = "autosnippet" },
-        { t("\\bigcap") },
+        { t("\\bigcap ") },
         { condition = mathzone }
     ),
     s(
         { trig = "bcup", dscr = "bigcup", snippetType = "autosnippet" },
-        { t("\\bigcup") },
+        { t("\\bigcup ") },
         { condition = mathzone }
     ),
     s(
@@ -203,7 +223,7 @@ return {
     ),
     s(
         { trig = "!>", dscr = "mapsto", snippetType = "autosnippet" },
-        { t("\\mapsto") },
+        { t("\\mapsto ") },
         { condition = mathzone }
     ),
 
@@ -263,6 +283,12 @@ return {
     s(
         { trig = "hat", dscr = "hat", snippetType = "autosnippet" },
         fmta("\\hat{<>}", { d(1, get_visual) }),
+        { condition = mathzone }
+    ),
+    -- Tilde
+    s(
+        { trig = "til", dscr = "tilde", snippetType = "autosnippet" },
+        fmta("\\tilde{<>}", { d(1, get_visual) }),
         { condition = mathzone }
     ),
     -- Bar
