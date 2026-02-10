@@ -113,4 +113,8 @@ return {
             cursor_scrolls_alone = false,
         },
     },
+
+    {
+        "sindrets/diffview.nvim",
+    },
 }

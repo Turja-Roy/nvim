@@ -57,7 +57,7 @@ return {
             enabled = true,
             layout = "telescope",
             hidden = true,
-            file_ignore_patterns = { "bin/.*", "res/.*", "*.log", },
+            -- file_ignore_patterns = { "bin/.*", "res/.*", "*.log", },
             win = {
                 input = { keys = { ["<C-x>"] = { "edit_split", mode = { "i", "n"} }, } },
                 list = { keys = { ["<C-x>"] = { "edit_split", mode = { "i", "n"} }, } }

@@ -7,6 +7,8 @@ return {
 
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-cmdline",
 
 			"rafamadriz/friendly-snippets",
 		},
@@ -67,6 +69,8 @@ return {
 				sources = {
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
+					{ name = "path" },
+					{ name = "buffer", keyword_length = 3 },
 				},
 			})
 
@@ -76,6 +80,24 @@ return {
 				'confirm_done',
 				cmp_autopairs.on_confirm_done()
 			)
+
+			-- Cmdline completion for `/` (search patterns)
+			cmp.setup.cmdline('/', {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = {
+					{ name = 'buffer' }
+				}
+			})
+
+			-- Cmdline completion for `:` (Vim commands)
+			cmp.setup.cmdline(':', {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = cmp.config.sources({
+					{ name = 'path' }
+				}, {
+					{ name = 'cmdline' }
+				})
+			})
 		end,
 	},
 }
