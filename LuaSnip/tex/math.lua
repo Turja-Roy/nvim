@@ -512,13 +512,18 @@ return {
         { condition = mathzone }
     ),
     s(
-        { trig = "txt", dscr = "therefore", snippetType = "autosnippet" },
+        { trig = "txt", dscr = "text", snippetType = "autosnippet" },
         fmta("\\text{<>}", { i(1) }),
         { condition = mathzone }
     ),
     s(
-        { trig = "dps", dscr = "therefore", snippetType = "autosnippet" },
+        { trig = "dps", dscr = "displaystyle", snippetType = "autosnippet" },
         fmta("\\displaystyle <>", { i(1) }),
+        { condition = mathzone }
+    ),
+    s(
+        { trig = "mod", dscr = "modulo", snippetType = "autosnippet" },
+        fmta("\\mod <>", { i(1) }),
         { condition = mathzone }
     ),
 }
