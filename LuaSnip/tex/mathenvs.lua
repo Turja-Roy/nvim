@@ -51,7 +51,7 @@ return {
             [[
               <>\[ 
                   <>
-               \]
+              \]
             ]],
             { f( function(_, snip) return snip.captures[1] end ), i(1) }
         )
@@ -62,7 +62,7 @@ return {
             [[
               <>\[ 
                   <>
-               \]
+              \]
             ]],
             { f( function(_, snip) return snip.captures[1] end ), i(1) }),
         { condition = line_begin }

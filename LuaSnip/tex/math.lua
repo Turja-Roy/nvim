@@ -177,8 +177,18 @@ return {
         { condition = mathzone }
     ),
     s(
+        { trig = "nsub", dscr = "subset", snippetType = "autosnippet" },
+        { t("\\not\\subset ") },
+        { condition = mathzone }
+    ),
+    s(
         { trig = "seq", dscr = "subset equal", snippetType = "autosnippet" },
         { t("\\subseteq ") },
+        { condition = mathzone }
+    ),
+    s(
+        { trig = "nseq", dscr = "subset equal", snippetType = "autosnippet" },
+        { t("\\not\\subseteq ") },
         { condition = mathzone }
     ),
     s(
@@ -192,8 +202,18 @@ return {
         { condition = mathzone }
     ),
     s(
+        { trig = "next", dscr = "exists", snippetType = "autosnippet" },
+        { t("\\not\\exists ") },
+        { condition = mathzone }
+    ),
+    s(
         { trig = "inn", dscr = "in", snippetType = "autosnippet" },
         { t("\\in ") },
+        { condition = mathzone }
+    ),
+    s(
+        { trig = "ninn", dscr = "not in", snippetType = "autosnippet" },
+        { t("\\not\\in ") },
         { condition = mathzone }
     ),
     s(
@@ -226,6 +246,11 @@ return {
         { t("\\mapsto ") },
         { condition = mathzone }
     ),
+    s(
+        { trig = "->", dscr = "to", snippetType = "autosnippet" },
+        { t("\\to ") },
+        { condition = mathzone }
+    ),
 
     -- Relations
     s(
@@ -238,33 +263,38 @@ return {
         { condition = mathzone }
     ),
     s(
+        { trig = "&= =", dscr = "equals", snippetType = "autosnippet" },
+        { t("\\equiv ") },
+        { condition = mathzone }
+    ),
+    s(
         { trig = "!=", dscr = "not equals", snippetType = "autosnippet" },
-        { t("\\neq") },
+        { t("\\neq ") },
         { condition = mathzone }
     ),
     s(
         { trig = "app", dscr = "approx", snippetType = "autosnippet" },
-        { t("\\approx") },
+        { t("\\approx ") },
         { condition = mathzone }
     ),
     s(
         { trig = "<=", dscr = "less than or equal to", snippetType = "autosnippet" },
-        { t("\\leq") },
+        { t("\\leq ") },
         { condition = mathzone }
     ),
     s(
         { trig = ">=", dscr = "greater than or equal to", snippetType = "autosnippet" },
-        { t("\\geq") },
+        { t("\\geq ") },
         { condition = mathzone }
     ),
     s(
         { trig = "=>", dscr = "implies", snippetType = "autosnippet" },
-        { t("\\implies") },
+        { t("\\implies ") },
         { condition = mathzone }
     ),
     s(
         { trig = "=<", dscr = "implied by", snippetType = "autosnippet" },
-        { t("\\impliedby") },
+        { t("\\impliedby ") },
         { condition = mathzone }
     ),
     s(
@@ -523,7 +553,7 @@ return {
     ),
     s(
         { trig = "mod", dscr = "modulo", snippetType = "autosnippet" },
-        fmta("\\mod <>", { i(1) }),
+        fmta("\\pmod{<>}", { i(1) }),
         { condition = mathzone }
     ),
 }
