@@ -5,6 +5,11 @@ return { -- Working with latex files
 		vim.g.vimtex_view_method = "zathura"
 		vim.g.vimtex_quickfix_mode = 0
 		vim.g.vimtex_matchparens_enabled = 0
+		vim.g.vimtex_quickfix_ignore_filters = {
+			'Underfull \\hbox',
+			'Overfull \\hbox',
+			'Package.*Warning',
+		}
 		vim.o.conceallevel = 1
 		vim.cmd.syntax("enable")
 		vim.api.nvim_create_autocmd("VimLeave", {

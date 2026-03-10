@@ -104,7 +104,33 @@ return {
             -- Configure Marksman (Markdown LSP)
             vim.lsp.config('marksman', {
                 filetypes = { 'markdown', 'quarto', 'rmd' },
-                root_dir = vim.fs.root(0, {'.git', '.marksman.toml'}),
+                root_dir = vim.fs.root(0, { '.git', '.marksman.toml' }),
+                capabilities = capabilities,
+                on_attach = on_attach,
+            })
+
+            -- Configure Texlab (LaTeX LSP)
+            vim.lsp.config('texlab', {
+                filetypes = { 'tex', 'bib' },
+                root_dir = vim.fs.root(0, { '.git', '.latexmkrc', '.texlabroot', 'texlabroot' }),
+                settings = {
+                    texlab = {
+                        build = {
+                            onSave = true,
+                            forwardSearchAfter = true,
+                        },
+                        chktex = {
+                            onOpenAndSave = true,
+                            onEdit = true,
+                        },
+                        diagnostics = {
+                            ignoredPatterns = {
+                                'Underfull \\\\hbox',
+                                'Overfull \\\\hbox',
+                            },
+                        },
+                    },
+                },
                 capabilities = capabilities,
                 on_attach = on_attach,
             })
@@ -140,6 +166,7 @@ return {
                     'quarto-lsp',
                     'basedpyright',
                     'marksman',
+                    'texlab',
                 },
                 automatic_enable = true, -- Automatically enable installed servers
             })
