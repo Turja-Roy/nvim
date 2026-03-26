@@ -298,7 +298,7 @@ return {
         { condition = mathzone }
     ),
     s(
-        { trig = "pm", dscr = "plus minus", snippetType = "autosnippet" },
+        { trig = "ppm", dscr = "plus minus", snippetType = "autosnippet" },
         { t("\\pm") },
         { condition = mathzone }
     ),

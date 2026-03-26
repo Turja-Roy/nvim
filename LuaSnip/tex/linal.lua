@@ -19,11 +19,17 @@ local get_visual = function(args, parent)
     end
 end
 
--- Dynamic matrix generator
-local generate_matrix = function(rows, cols, mat_type)
-    local nodes = {}
-    local row_strs = {}
-    local insert_index = 1
+local mat_types = {
+    m = "matrix",
+    p = "pmatrix",
+    b = "bmatrix",
+    v = "vmatrix",
+    B = "Bmatrix",
+    V = "Vmatrix",
+}
+
+local function generate_matrix(rows, cols, mat_type, inline)
+    local nodes, row_strs, insert_index = {}, {}, 1
 
     for r = 1, rows do
         local col_strs = {}
@@ -35,90 +41,82 @@ local generate_matrix = function(rows, cols, mat_type)
         table.insert(row_strs, table.concat(col_strs, " & "))
     end
 
-    local matrix_content = table.concat(row_strs, " \\\\\n    ")
-    local template = string.format("\\begin{%s}\n    %s\n\\end{%s}", mat_type, matrix_content, mat_type)
+    local row_sep = inline and " \\\\ " or " \\\\\n    "
+    local matrix_content = table.concat(row_strs, row_sep)
+    local template = inline
+        and string.format("\\begin{%s} %s \\end{%s}", mat_type, matrix_content, mat_type)
+        or string.format("\\begin{%s} \n    %s \n \\end{%s}", mat_type, matrix_content, mat_type)
 
-    return fmta(template, nodes)
+    return sn(nil, fmta(template, nodes))
+end
+
+local function generate_augmatrix(rows, left_cols, right_cols, inline)
+    local total_cols = left_cols + right_cols
+    local nodes, row_strs, insert_index = {}, {}, 1
+
+    for r = 1, rows do
+        local col_strs = {}
+        for c = 1, total_cols do
+            table.insert(col_strs, "<>")
+            table.insert(nodes, i(insert_index))
+            insert_index = insert_index + 1
+        end
+        table.insert(row_strs, table.concat(col_strs, " & "))
+    end
+
+    local col_spec = string.rep("c", left_cols) .. "|" .. string.rep("c", right_cols)
+    local row_sep = inline and "\\\\ " or " \\\\\n    "
+    local matrix_content = table.concat(row_strs, row_sep)
+    local template = inline
+        and string.format("\\left[\\begin{array}{%s}%s\\end{array}\\right]", col_spec, matrix_content)
+        or string.format("\\left[\\begin{array}{%s}\n    %s\n\\end{array}\\right]", col_spec, matrix_content)
+
+    return sn(nil, fmta(template, nodes))
 end
 
 return {
-    -- Dynamic Matrices (pmatrix)
+    -- Dynamic Matrices
     s(
-        { trig = "pmat_(%d)(%d)", dscr = "mxn matrix", regTrig = true, snippetType = "autosnippet" },
-        d(1, function(_, snip)
-            local rows = tonumber(snip.captures[1])
-            local cols = tonumber(snip.captures[2])
-            return sn(nil, generate_matrix(rows, cols, "pmatrix"))
+        { trig = "([mpbBvV])mat_%d%d", dscr = "dynamic matrix", regTrig = true, snippetType = "autosnippet" },
+        d(1, function(args, parent)
+            local t = parent.snippet.env.LS_TRIGGER
+            local mat_char = string.match(t, "^([mpbBvV])")
+            local inline = false
+            local digits = string.match(t, "_([%d]+)$") or string.match(t, "_([%d]+)")
+            local rows = tonumber(string.sub(digits, 1, 1))
+            local cols = tonumber(string.sub(digits, 2, 2))
+            local mat_env = mat_types[mat_char]
+            return generate_matrix(rows, cols, mat_env, inline)
         end),
         { condition = mathzone }
     ),
 
-    -- Dynamic Matrices (bmatrix)
+    -- Dynamic Inline Matrices
     s(
-        { trig = "bmat_(%d)(%d)", dscr = "mxn bracket matrix", regTrig = true, snippetType = "autosnippet" },
-        d(1, function(_, snip)
-            local rows = tonumber(snip.captures[1])
-            local cols = tonumber(snip.captures[2])
-            return sn(nil, generate_matrix(rows, cols, "bmatrix"))
+        { trig = "([pPbBvV])mati_%d%d", dscr = "dynamic inline matrix", regTrig = true, snippetType = "autosnippet" },
+        d(1, function(args, parent)
+            local t = parent.snippet.env.LS_TRIGGER
+            local mat_char = string.match(t, "^([pPbBvV])")
+            local inline = true
+            local digits = string.match(t, "_([%d]+)$") or string.match(t, "_([%d]+)")
+            local rows = tonumber(string.sub(digits, 1, 1))
+            local cols = tonumber(string.sub(digits, 2, 2))
+            local mat_env = mat_types[mat_char]
+            return generate_matrix(rows, cols, mat_env, inline)
         end),
         { condition = mathzone }
     ),
 
-    -- Dynamic Matrices (vmatrix - for determinants)
+    -- Dynamic Augmented Matrix
     s(
-        { trig = "vmat_(%d)(%d)", dscr = "mxn determinant matrix", regTrig = true, snippetType = "autosnippet" },
-        d(1, function(_, snip)
-            local rows = tonumber(snip.captures[1])
-            local cols = tonumber(snip.captures[2])
-            return sn(nil, generate_matrix(rows, cols, "vmatrix"))
-        end),
-        { condition = mathzone }
-    ),
-
-    -- Dynamic Matrices (Bmatrix - curly braces)
-    s(
-        { trig = "Bmat_(%d)(%d)", dscr = "mxn curly brace matrix", regTrig = true, snippetType = "autosnippet" },
-        d(1, function(_, snip)
-            local rows = tonumber(snip.captures[1])
-            local cols = tonumber(snip.captures[2])
-            return sn(nil, generate_matrix(rows, cols, "Bmatrix"))
-        end),
-        { condition = mathzone }
-    ),
-
-    -- Dynamic Augmented matrix
-    s(
-        { trig = "amat_(%d)(%d)(%d)", dscr = "mxn|p augmented matrix", regTrig = true, snippetType = "autosnippet" },
-        d(1, function(_, snip)
-            local rows = tonumber(snip.captures[1])
-            local left_cols = tonumber(snip.captures[2])
-            local right_cols = tonumber(snip.captures[3])
-            
-            -- Generate column alignment string (ccc|cc format)
-            local left_align = string.rep("c", left_cols)
-            local right_align = string.rep("c", right_cols)
-            local col_spec = left_align .. "|" .. right_align
-            
-            -- Generate matrix content
-            local nodes = {}
-            local row_strs = {}
-            local insert_index = 1
-            local total_cols = left_cols + right_cols
-            
-            for r = 1, rows do
-                local col_strs = {}
-                for c = 1, total_cols do
-                    table.insert(col_strs, "<>")
-                    table.insert(nodes, i(insert_index))
-                    insert_index = insert_index + 1
-                end
-                table.insert(row_strs, table.concat(col_strs, " & "))
-            end
-            
-            local matrix_content = table.concat(row_strs, " \\\\\n    ")
-            local template = string.format("\\left[\\begin{array}{%s}\n    %s\n\\end{array}\\right]", col_spec, matrix_content)
-            
-            return sn(nil, fmta(template, nodes))
+        { trig = "amat_%d%d%d", dscr = "augmented matrix", regTrig = true, snippetType = "autosnippet" },
+        d(1, function(args, parent)
+            local t = parent.snippet.env.LS_TRIGGER
+            local digits = string.match(t, "_([%d]+)$") or string.match(t, "_([%d]+)")
+            local rows = tonumber(string.sub(digits, 1, 1))
+            local lc = tonumber(string.sub(digits, 2, 2))
+            local rc = tonumber(string.sub(digits, 3, 3))
+            return generate_augmatrix(rows, lc, rc, false)
         end),
         { condition = mathzone }
     ),

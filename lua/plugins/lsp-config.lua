@@ -116,8 +116,8 @@ return {
                 settings = {
                     texlab = {
                         build = {
-                            onSave = true,
-                            forwardSearchAfter = true,
+                            onSave = false,
+                            forwardSearchAfter = false,
                         },
                         chktex = {
                             onOpenAndSave = true,
