@@ -182,7 +182,7 @@ return {
         { trig = "exc", dscr = "Excercise" },
         fmta(
             [[
-              \Excercise{<>}{
+              \Exercise{<>}{
                   <>
               }
             ]],

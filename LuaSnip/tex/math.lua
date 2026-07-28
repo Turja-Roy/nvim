@@ -495,6 +495,23 @@ return {
         { condition = mathzone }
     ),
 
+    -- Dots
+    s(
+        { trig = "c..", dscr = "cdot", snippetType = "autosnippet" },
+        { t("\\cdot ") },
+        { condition = mathzone }
+    ),
+    s(
+        { trig = "v..", dscr = "vdot", snippetType = "autosnippet" },
+        { t("\\vdots ") },
+        { condition = mathzone }
+    ),
+    s(
+        { trig = "d..", dscr = "ddot", snippetType = "autosnippet" },
+        { t("\\ddots ") },
+        { condition = mathzone }
+    ),
+
     -- Misc
     s(
         { trig = "([%d%a%)%}%]])sr", dscr = "square", wordTrig = false, regTrig = true, snippetType = "autosnippet" },
@@ -522,8 +539,8 @@ return {
         { condition = mathzone }
     ),
     s(
-        { trig = "xx", dscr = "times", snippetType = "autosnippet" },
-        { t("\\times") },
+        { trig = "([%d%a%)%}%]])xx", dscr = "times", wordTrig = false, regTrig = true, snippetType = "autosnippet" },
+        fmta(" <>\\times ", { f(function(_, snip) return snip.captures[1] end) }),
         { condition = mathzone }
     ),
     s(
@@ -547,6 +564,11 @@ return {
         { condition = mathzone }
     ),
     s(
+        { trig = "itxt", dscr = "text", snippetType = "autosnippet" },
+        fmta("\\intertext{<>}", { i(1) }),
+        { condition = mathzone }
+    ),
+    s(
         { trig = "dps", dscr = "displaystyle", snippetType = "autosnippet" },
         fmta("\\displaystyle <>", { i(1) }),
         { condition = mathzone }
@@ -554,6 +576,16 @@ return {
     s(
         { trig = "mod", dscr = "modulo", snippetType = "autosnippet" },
         fmta("\\pmod{<>}", { i(1) }),
+        { condition = mathzone }
+    ),
+    s(
+        { trig = "([%d%a%)%}%]])cc", dscr = "complex conjugate", wordTrig = false, regTrig = true, snippetType = "autosnippet" },
+        fmta("<>^{*}", { f(function(_, snip) return snip.captures[1] end) }),
+        { condition = mathzone }
+    ),
+    s(
+        { trig = "boxed", dscr = "boxed", snippetType = "autosnippet" },
+        fmta("\\boxed{ <> }", { d(1, get_visual) }),
         { condition = mathzone }
     ),
 }

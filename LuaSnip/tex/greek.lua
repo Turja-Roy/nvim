@@ -16,7 +16,7 @@ local greek_latex = {
     f = "\\phi", c = "\\chi", y = "\\psi", w = "\\omega",
     A = "\\Alpha", B = "\\Beta", G = "\\Gamma", D = "\\Delta", E = "\\Epsilon",
     Z = "\\Zeta", H = "\\Eta", Q = "\\Theta", I = "\\Iota", K = "\\Kappa",
-    L = "\\Lambda", M = "\\Mu", N = "\\Nu", X = "\\Xi", O = "\\Omicron",
+    L = "\\Lambda", M = "\\Mu", N = "\\nabla", X = "\\Xi", O = "\\Omicron",
     P = "\\Pi", R = "\\Rho", S = "\\Sigma", T = "\\Tau", U = "\\Upsilon",
     F = "\\Phi", C = "\\Chi", Y = "\\Psi", W = "\\Omega",
 

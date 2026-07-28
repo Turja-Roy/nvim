@@ -146,7 +146,7 @@ return {
     -- Transpose and Inverse
     s(
         { trig = "([A-Za-z])TT", dscr = "transpose", wordTrig = false, regTrig = true, snippetType = "autosnippet" },
-        fmta("<>^{\\top}", { f(function(_, snip) return snip.captures[1] end) }),
+        fmta("<>^{T}", { f(function(_, snip) return snip.captures[1] end) }),
         { condition = mathzone }
     ),
     s(
@@ -171,11 +171,6 @@ return {
     ),
 
     -- Vector Operations
-    s(
-        { trig = "dot", dscr = "dot product", snippetType = "autosnippet" },
-        fmta("<> \\cdot <>", { i(1, "a"), i(2, "b") }),
-        { condition = mathzone }
-    ),
     s(
         { trig = "cross", dscr = "cross product", snippetType = "autosnippet" },
         fmta("<> \\times <>", { i(1, "a"), i(2, "b") }),
@@ -361,6 +356,28 @@ return {
             ]],
             { i(1, "k"), i(1), i(2, "j"), i(3, "k-1"), i(2), i(1) }
         ),
+        { condition = mathzone }
+    ),
+
+    -- Bracket Notation
+    s(
+        { trig = "bra", dscr = "bra vector", snippetType = "autosnippet" },
+        fmta("\\bra{<>}", { d(1, get_visual) }),
+        { condition = mathzone }
+    ),
+    s(
+        { trig = "ket", dscr = "ket vector", snippetType = "autosnippet" },
+        fmta("\\ket{<>}", { d(1, get_visual) }),
+        { condition = mathzone }
+    ),
+    s(
+        { trig = "bkt", dscr = "braket", snippetType = "autosnippet" },
+        fmta("\\braket{<>}{<>}", { i(1, "U"), i(2, "V") }),
+        { condition = mathzone }
+    ),
+    s(
+        { trig = "bkkt", dscr = "braket", snippetType = "autosnippet" },
+        fmta("\\bra{<>}<>\\ket{<>}", { i(1, "U"), i(2, "\\Omega"), i(3, "V") }),
         { condition = mathzone }
     ),
 }

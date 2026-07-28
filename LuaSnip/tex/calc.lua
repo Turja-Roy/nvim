@@ -20,32 +20,60 @@ end
 
 return {
 	-- Derivative
+    s(
+        { trig = "dot", dscr = "Derivative", snippetType = "autosnippet" },
+        fmta("\\dot{<>}", { i(1, "x") }),
+        { condition = mathzone }
+    ),
+    s(
+        { trig = "ddot", dscr = "Derivative", snippetType = "autosnippet" },
+        fmta("\\ddot{<>}", { i(1, "x") }),
+        { condition = mathzone }
+    ),
+    s(
+        { trig = "dddot", dscr = "Derivative", snippetType = "autosnippet" },
+        fmta("\\dddot{<>}", { i(1, "x") }),
+        { condition = mathzone }
+    ),
 	s(
 		{ trig = "ddx", dscr = "Derivative", snippetType = "autosnippet" },
-		fmta("\\dv{<>}{<>}", { i(1, "y"), i(2, "x") })
+		fmta("\\dv{<>}{<>}", { i(1, "y"), i(2, "x") }),
+        { condition = mathzone }
 	),
 	s(
 		{ trig = "dvx", dscr = "Derivative", snippetType = "autosnippet" },
-		fmta("\\dv{}{<>} <> ", { i(1, "x"), i(2, "y") })
+		fmta("\\dv{}{<>} <> ", { i(1, "x"), i(2, "y") }),
+        { condition = mathzone }
 	),
 	s(
 		{ trig = "dvn", dscr = "Derivative", snippetType = "autosnippet" },
-		fmta("\\dv[<>]{<>}{<>}", { i(1, "order"), i(2, "nom"), i(3, "denom") })
+		fmta("\\dv[<>]{<>}{<>}", { i(1, "order"), i(2, "nom"), i(3, "denom") }),
+        { condition = mathzone }
 	),
 
 	-- Partial Derivative
 	s(
 		{ trig = "pdv", dscr = "Partial Derivative", snippetType = "autosnippet" },
-		fmta("\\pdv{<>}{<>}", { i(1, "nom"), i(2, "denom") })
+		fmta("\\pdv{<>}{<>}", { i(1, "nom"), i(2, "denom") }),
+        { condition = mathzone }
 	),
 	s(
 		{ trig = "pdx", dscr = "Partial Derivative", snippetType = "autosnippet" },
-		fmta("\\pdv{}{<>} <>", { i(1, "denom"), i(2, "nom") })
+		fmta("\\pdv{}{<>} <>", { i(1, "denom"), i(2, "nom") }),
+        { condition = mathzone }
 	),
 	s(
 		{ trig = "pdn", dscr = "Partial Derivative", snippetType = "autosnippet" },
-		fmta("\\pdv[<>]{<>}{<>}", { i(1, "order"), i(2, "nom"), i(3, "denom") })
+		fmta("\\pdv[<>]{<>}{<>}", { i(1, "order"), i(2, "nom"), i(3, "denom") }),
+        { condition = mathzone }
 	),
+
+    -- Partial Derivative sign
+    s(
+        { trig = "par", dscr = "partial sign", snippetType = "autosnippet" },
+        fmta("\\partial", {}),
+        { condition = mathzone }
+    ),
 
 	-- SI Unit
 	s(

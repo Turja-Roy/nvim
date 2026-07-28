@@ -6,6 +6,9 @@ local d = ls.dynamic_node
 local fmta = require("luasnip.extras.fmt").fmta
 
 local line_begin = require("luasnip.extras.expand_conditions").line_begin
+local mathzone = function()
+    return vim.fn['vimtex#syntax#in_mathzone']() == 1
+end
 
 local get_visual = function(args, parent)
     if #parent.snippet.env.LS_SELECT_RAW > 0 then
@@ -19,6 +22,8 @@ return {
     s({ trig = "it", dscr = "visual italic" }, fmta("\\textit{<>}", { d(1, get_visual) })),
     s({ trig = "tt", dscr = "visual typescript" }, fmta("\\texttt{<>}", { d(1, get_visual) })),
     s({ trig = "bf", dscr = "visual bold" }, fmta("\\textbf{<>}", { d(1, get_visual) })),
+    s({ trig = "bf", dscr = "math bold", snippetType = "autosnippet" }, fmta("\\mathbf{<>}", { d(1, get_visual) }), { condition = mathzone }),
+    s({ trig = "bm", dscr = "math bold", snippetType = "autosnippet" }, fmta("\\bm{<>}", { d(1, get_visual) }), { condition = mathzone }),
     s({ trig = "sc", dscr = "visual small caps" }, fmta("\\textsc{<>}", { d(1, get_visual) })),
     s({ trig = "un", dscr = "visual underline" }, fmta("\\underline{<>}", { d(1, get_visual) })),
 
