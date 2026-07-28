@@ -83,16 +83,28 @@ local function execute_current_cell()
 	end
 	
 	-- Select the cell content visually and execute with Molten
-	vim.api.nvim_win_set_cursor(0, {cell_start, 0})
-	vim.cmd('normal! V')
-	vim.api.nvim_win_set_cursor(0, {cell_end, 0})
-	vim.cmd('MoltenEvaluateVisual')
-	
-	-- Restore cursor position
-	vim.api.nvim_win_set_cursor(0, current_pos)
-	
-	-- Clear visual selection
-	vim.cmd('normal! ')
+    local keys = string.format('%dGV%dG', cell_start, cell_end)
+    vim.api.nvim_feedkeys(
+        vim.api.nvim_replace_termcodes(keys, true, false, true),
+        'x',
+        false
+    )
+    vim.cmd('MoltenEvaluateVisual')
+    -- vim.api.nvim_win_set_cursor(0, {cell_start, 0})
+    -- vim.cmd('normal! V')
+    -- vim.api.nvim_win_set_cursor(0, {cell_end, 0})
+    -- vim.cmd('MoltenEvaluateVisual')
+
+    -- Restore cursor position
+    vim.api.nvim_win_set_cursor(0, current_pos)
+
+    -- Clear visual selection
+    vim.api.nvim_feedkeys(
+        vim.api.nvim_replace_termcodes('<Esc>', true, false, true),
+        'n',
+        false
+    )
+    -- vim.cmd('normal! ')
 end
 
 -- Buffer-local keybindings for Python cells
@@ -107,21 +119,21 @@ vim.keymap.set('n', '<leader>ic', insert_cell, vim.tbl_extend('force', opts, { d
 
 -- Execute current cell with Molten (smart detection)
 vim.keymap.set('n', '<leader>mc', execute_current_cell, 
-	vim.tbl_extend('force', opts, { desc = 'Execute current cell (Molten)' }))
+    vim.tbl_extend('force', opts, { desc = 'Execute current cell (Molten)' }))
 
 -- Quick Molten helpers (in addition to global <leader>m* bindings)
 -- These are just convenience shortcuts for Python files
 vim.keymap.set('n', '<leader>mp', ':MoltenInit python3<CR>', 
-	vim.tbl_extend('force', opts, { desc = 'Start Python3 kernel' }))
+    vim.tbl_extend('force', opts, { desc = 'Start Python3 kernel' }))
 
 -- Note: Iron.nvim already configured for Python with # %% dividers
 -- So <leader>xb and <leader>xn will work for sending cells to REPL
 
 -- Visual feedback: highlight cell markers
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-	buffer = 0,
-	callback = function()
-		-- Highlight # %% cell markers
-		vim.fn.matchadd('Comment', '^# %%.*')
-	end,
+    buffer = 0,
+    callback = function()
+        -- Highlight # %% cell markers
+        vim.fn.matchadd('Comment', '^# %%.*')
+    end,
 })
