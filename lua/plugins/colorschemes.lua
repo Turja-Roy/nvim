@@ -46,21 +46,35 @@ return {
     --         vim.cmd.colorscheme 'catppuccin'
     --     end
     -- },
-    {
-        "tiagovla/tokyodark.nvim",
-        opts = {
-            -- custom options here
-        },
-        config = function(_, opts)
-            require("tokyodark").setup(opts) -- calling setup is optional
-            vim.cmd [[colorscheme tokyodark]]
-        end,
-    },
+    -- {
+    --     "tiagovla/tokyodark.nvim",
+    --     opts = {
+    --         -- custom options here
+    --     },
+    --     config = function(_, opts)
+    --         require("tokyodark").setup(opts) -- calling setup is optional
+    --         vim.cmd [[colorscheme tokyodark]]
+    --     end,
+    -- },
     -- { -- Ayu
     --     'Shatur/neovim-ayu',
     --     priority = 1000,
     --     config = function()
+    --         -- require('ayu').setup({
+    --         --     overrides = {
+    --         --         LineNr = { fg = "#e0a254" },
+    --         --         LineNrAbove = { fg = "#a8a69c" },
+    --         --         LineNrBelow = { fg = "#a8a69c" },
+    --         --         CursorLineNr = { fg = "#ffb454", bold = true },
+    --         --     },
+    --         -- })
     --         vim.cmd.colorscheme 'ayu'
     --     end,
     -- },
+    { -- Molokai
+        'UtkarshVerma/molokai.nvim',
+        config = function ()
+            vim.cmd.colorscheme 'molokai'
+        end
+    },
 }
